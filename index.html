@@ -165,13 +165,13 @@
     align-items: baseline;
   }
   .products h3 { font-size: 2.3rem; color: #fff; }
-  .products .soon {
-    display: inline-block; margin-top: 8px; font-size: 0.85rem; font-weight: 600;
-    background: var(--maple); color: var(--ink); padding: 3px 10px; border-radius: 4px;
-    font-variation-settings: "wdth" 100; font-stretch: 100%;
-  }
+  .products .role { display: block; margin-top: 6px; font-size: 1.05rem; font-weight: 600; color: var(--maple); }
   .products p { color: #E6E1DB; font-size: 1.12rem; }
-  .conf-note { margin-top: 36px; color: #D9D4CE; }
+  .founding { margin-top: clamp(44px, 6vw, 72px); display: grid; gap: 18px; justify-items: start; }
+  .founding h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: #fff; padding-bottom: 10px; border-bottom: 6px solid var(--maple); }
+  .founding p { color: #E6E1DB; font-size: 1.15rem; }
+  .band-ink .btn-primary, .band-ink .btn-primary:hover { color: #fff; }
+  #conf-title { max-width: none; }
 
   /* Demo */
   .video {
@@ -276,7 +276,7 @@
         <p class="lead">Osprey cuts the time a volleyball challenge takes and gives referees more data points to decide it. The referee taps the challenge type, Osprey opens the best angle at the right moment, and ball tracking shows where the ball landed or whether its path changed at the block.</p>
         <p class="referee-note">The referee always makes the call.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Talk about a 2027 pilot</a>
+          <a class="btn btn-primary" href="#founding">Become a 2027 founding member</a>
         </div>
       </div>
       </div>
@@ -332,27 +332,37 @@
   <section id="conferences" class="band band-ink" aria-labelledby="conf-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="conf-title">Built for conferences</h2>
-        <p class="lead">Each conference or school chooses its own replay equipment and cameras. Osprey gives a conference one standard across every member gym, and gives its officials better material to learn from.</p>
+        <h2 id="conf-title">What goes into Osprey</h2>
+        <p class="lead">One system with three parts. Each conference or school chooses its own replay equipment and cameras. Osprey gives a conference one standard across every member gym, and gives its officials better material to learn from.</p>
       </div>
       <ul class="products">
         <li>
-          <h3>Osprey Perch</h3>
-          <p>Camera placement, so every arena in your conference gives referees the same angles.</p>
+          <div>
+            <h3>Osprey Perch</h3>
+            <span class="role">Optimal camera placement</span>
+          </div>
+          <p>Every arena is different. Perch places the cameras so every gym in your conference gives referees the same angles.</p>
         </li>
         <li>
-          <h3>Osprey Hover</h3>
-          <p>Post-game reviews for conferences and referee training, built from the challenges in your own matches.</p>
+          <div>
+            <h3>Osprey Hover</h3>
+            <span class="role">Post-game reviews</span>
+          </div>
+          <p>For conferences to review challenges and for referee training, built from the challenges in your own matches.</p>
         </li>
         <li>
           <div>
             <h3>Osprey Strike</h3>
-            <span class="soon">Coming soon</span>
+            <span class="role">Full live Osprey Vision</span>
           </div>
-          <p>Live Osprey Vision with real-time feeds and decision support.</p>
+          <p>Real-time feeds, instant replay review and live decision support.</p>
         </li>
       </ul>
-      <p class="conf-note">Planning replay for the 2027 season? <a href="#contact">Ask Greg about a pilot</a> for a conference tournament or a set of league matches.</p>
+      <div id="founding" class="founding">
+        <h3>Now looking for founding members for 2027</h3>
+        <p>Osprey is looking for conferences and schools to join as founding members for the 2027 season.</p>
+        <a class="btn btn-primary" href="mailto:greg@ospreyreplay.com?subject=Osprey%202027%20founding%20member">Become a founding member</a>
+      </div>
     </div>
   </section>
 
@@ -365,7 +375,7 @@
       </div>
       <div id="contact" class="contact-card" aria-labelledby="contact-title">
         <h3 id="contact-title">Talk to Greg</h3>
-        <p>For a demo, a conference pilot, or questions from your coordinator of officials.</p>
+        <p>For founding membership, a demo, or questions from your coordinator of officials.</p>
         <dl>
           <dt>Email</dt>
           <dd><a href="mailto:greg@ospreyreplay.com">greg@ospreyreplay.com</a></dd>
