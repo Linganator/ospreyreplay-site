@@ -156,6 +156,13 @@
   .vision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
   .vision-item { display: grid; gap: 16px; align-content: start; }
   .vision-item p { color: var(--ink-soft); }
+  .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); margin-bottom: clamp(48px, 6vw, 72px); }
+  .compare-col { border: 2px solid #D5D9DE; border-radius: 10px; padding: clamp(22px, 3vw, 32px); display: grid; gap: 14px; align-content: start; }
+  .compare-col h3 { font-size: 1.5rem; }
+  .compare-col ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: var(--ink-soft); }
+  .compare-vision { border: 3px solid var(--signal); background: #F4F8FE; }
+  .compare-vision ul { color: var(--ink); }
+  .examples-label { font-weight: 700; font-size: 1.1rem; margin-bottom: 18px; }
 
   /* Products, ruled like court lines */
   .products { margin: 0; padding: 0; list-style: none; border-top: 3px solid var(--line); }
@@ -200,7 +207,7 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .split, .vision-grid, .clips { grid-template-columns: 1fr; }
+    .split, .vision-grid, .clips, .compare { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps li { margin-right: 0; padding-right: 0; }
     .products li { grid-template-columns: 1fr; gap: 10px; }
@@ -272,7 +279,7 @@
 
       <div class="hero-body">
       <div class="hero-copy">
-        <p class="lead">Osprey cuts the time a volleyball challenge takes and gives referees more data points to decide it. The referee taps the challenge type, Osprey opens the best angle at the right moment, and ball tracking shows where the ball landed or whether its path changed at the block.</p>
+        <p class="lead">Osprey cuts the time a volleyball challenge takes and gives referees more data points to decide it. The referee taps the challenge type, Osprey opens the best angle at the right moment, and Osprey Vision adds the physics behind the play, like where the ball landed or whether its path changed at the block.</p>
         <p class="referee-note">The referee always makes the call.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#founding">Become a 2027 founding member</a>
@@ -299,7 +306,7 @@
         </li>
         <li>
           <h3>Osprey Vision adds the evidence</h3>
-          <p>Ball tracking and physics show where the ball landed and the mark it left, or whether its path changed at a block.</p>
+          <p>Ball tracking and physics add data points to the review, such as where the ball landed or whether its path changed at a block.</p>
         </li>
       </ol>
       <div class="decision">
@@ -313,8 +320,27 @@
     <div class="wrap">
       <div class="section-head">
         <h2 id="vision-title">What Osprey Vision shows</h2>
-        <p class="lead">Two kinds of challenge decide close sets: where the ball landed, and whether a blocker touched it. Vision adds data points to both, so the referee isn't left judging a freeze-frame.</p>
+        <p class="lead">A great replay tech can have the play cued up at the right angle and the right moment. What they can't show is the physics behind the play. Osprey Vision tracks the ball and measures it, and it's built to help with every challenge review, not just line calls and block touches.</p>
       </div>
+      <div class="compare">
+        <div class="compare-col">
+          <h3>A great replay tech</h3>
+          <ul>
+            <li>Finds the best camera</li>
+            <li>Cues up the right moment</li>
+            <li>Shows the referee the frame</li>
+          </ul>
+        </div>
+        <div class="compare-col compare-vision">
+          <h3>Osprey Vision</h3>
+          <ul>
+            <li>Best angle and moment, cued in one tap</li>
+            <li>Tracks the ball's speed and path</li>
+            <li>Shows the physics behind the play: how the ball landed, the mark it left, whether its path changed</li>
+          </ul>
+        </div>
+      </div>
+      <p class="examples-label">Two examples from this fall</p>
       <div class="vision-grid">
         <div class="vision-item">
           <h3>Where it landed</h3>
