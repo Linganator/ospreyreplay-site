@@ -96,8 +96,14 @@
   /* Hero */
   .hero { padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 104px); }
   .hero-top { display: grid; gap: 24px; }
-  .hero-video { margin: clamp(32px, 4vw, 48px) 0 0; }
-  .hero-video figcaption { font-size: 0.95rem; color: var(--ink-soft); margin-top: 12px; }
+  .difference { margin-top: clamp(40px, 5vw, 64px); }
+  .difference h2 { margin-bottom: clamp(20px, 3vw, 32px); max-width: none; }
+  .clips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 36px); }
+  .clip { margin: 0; display: grid; gap: 12px; align-content: start; }
+  .clip h3 { font-size: 1.45rem; }
+  .clip figcaption { color: var(--ink-soft); line-height: 1.45; }
+  .difference-more { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 28px; max-width: none; }
+  .difference-more span { font-size: 0.95rem; color: var(--ink-soft); }
   .hero-body {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(32px, 5vw, 72px); align-items: center; margin-top: clamp(48px, 7vw, 88px);
@@ -216,7 +222,7 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .hero-body, .split, .vision-grid { grid-template-columns: 1fr; }
+    .hero-body, .split, .vision-grid, .clips { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps li { margin-right: 0; padding-right: 0; }
     .products li { grid-template-columns: 1fr; gap: 10px; }
@@ -259,15 +265,33 @@
         <p class="hero-sub"><span>Faster challenge reviews.</span> <span>More confident calls.</span></p>
       </div>
 
-      <figure id="demo" class="hero-video">
-        <div class="video">
-          <video controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Osprey demo: two volleyball challenge reviews">
-            <source src="demo.mp4" type="video/mp4">
-            <a href="demo.mp4">Download the Osprey demo video</a>
-          </video>
+      <div id="demo" class="difference">
+        <h2>The Osprey difference</h2>
+        <div class="clips">
+          <figure class="clip">
+            <h3>In/out call</h3>
+            <div class="video">
+              <video autoplay muted loop playsinline controls preload="auto" poster="clip-in-out.jpg" aria-label="In/out call review with Osprey">
+                <source src="clip-in-out.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption>Called in. One tap opens the sideline camera at the touchdown, and Osprey measures the ball's mark. Ruling: reversed to out.</figcaption>
+          </figure>
+          <figure class="clip">
+            <h3>Block touch</h3>
+            <div class="video">
+              <video autoplay muted loop playsinline controls preload="auto" poster="clip-block-touch.jpg" aria-label="Block touch review with Osprey">
+                <source src="clip-block-touch.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption>Called no touch. One tap opens the camera behind the hitter at the block, and Osprey tracks the ball's path: it turned 1.5°. Ruling: reversed to touch.</figcaption>
+          </figure>
         </div>
-        <figcaption>Two real challenges from this fall, run through Osprey after the match. The referee still makes the call.</figcaption>
-      </figure>
+        <p class="difference-more">
+          <a class="btn btn-ghost" href="demo.mp4">Watch the full 2-minute demo</a>
+          <span>Concept screens on real footage from this fall, processed after the match.</span>
+        </p>
+      </div>
 
       <div class="hero-body">
       <div class="hero-copy">
@@ -459,5 +483,10 @@
   </div>
 </footer>
 
+<script>
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".clip video").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); });
+  }
+</script>
 </body>
 </html>
