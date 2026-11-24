@@ -174,9 +174,30 @@
   .products h3 { font-size: 2.3rem; color: #fff; }
   .products .role { display: block; margin-top: 6px; font-size: 1.05rem; font-weight: 600; color: var(--maple); }
   .products p { color: #E6E1DB; font-size: 1.12rem; }
-  .founding { margin-top: clamp(44px, 6vw, 72px); display: grid; gap: 18px; justify-items: start; }
+  .founding {
+    margin-top: clamp(44px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 5vw, 64px); align-items: start;
+  }
+  .founding-copy { display: grid; gap: 18px; justify-items: start; }
   .founding h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: #fff; padding-bottom: 10px; border-bottom: 6px solid var(--maple); }
   .founding p { color: #E6E1DB; font-size: 1.15rem; }
+  .founding p strong { color: #fff; }
+  .lead-form { background: var(--paper); color: var(--ink); border-radius: 10px; padding: clamp(22px, 3vw, 32px); display: grid; gap: 16px; }
+  .lead-form .field { display: grid; gap: 6px; }
+  .lead-form .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .lead-form label { font-weight: 700; font-size: 0.98rem; }
+  .lead-form label span { font-weight: 400; color: var(--ink-soft); }
+  .lead-form input, .lead-form textarea {
+    font: inherit; font-size: 1rem; color: var(--ink); background: #fff;
+    border: 2px solid #C9CED4; border-radius: 6px; padding: 10px 12px; width: 100%; box-sizing: border-box;
+  }
+  .lead-form input:focus, .lead-form textarea:focus { border-color: var(--signal); outline: none; box-shadow: 0 0 0 3px rgba(10,88,202,.18); }
+  .lead-form [aria-invalid="true"] { border-color: #B3261E; }
+  .lead-form .btn { justify-self: start; margin-top: 4px; }
+  .lead-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .form-status { margin: 0; color: var(--ink); font-weight: 600; }
+  .form-status.error { color: #B3261E; }
+  .form-done { color: var(--ink); font-size: 1.2rem; font-weight: 700; }
   .band-ink .btn-primary, .band-ink .btn-primary:hover { color: #fff; }
   #conf-title { max-width: none; }
 
@@ -207,7 +228,7 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .split, .vision-grid, .clips, .compare { grid-template-columns: 1fr; }
+    .split, .vision-grid, .clips, .compare, .founding { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps li { margin-right: 0; padding-right: 0; }
     .products li { grid-template-columns: 1fr; gap: 10px; }
@@ -221,6 +242,7 @@
     .wordmark img { width: 68px; height: 42px; }
     .wordmark-name { font-size: 0.95rem; gap: 2px; }
     .nav .btn { padding: 0 16px; }
+    .lead-form .field-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -384,9 +406,46 @@
         </li>
       </ul>
       <div id="founding" class="founding">
-        <h3>Now looking for founding members for 2027</h3>
-        <p>Osprey is looking for conferences and schools to join as founding members for the 2027 season.</p>
-        <a class="btn btn-primary" href="mailto:greg@ospreyreplay.com?subject=Osprey%202027%20founding%20member">Become a founding member</a>
+        <div class="founding-copy">
+          <h3>Now looking for founding members for 2027</h3>
+          <p><strong>What's a founding member?</strong> One of the first conferences or schools to use Osprey, starting with the 2027 season. Founding members work directly with Greg to set Osprey up in their gyms, and their feedback shapes what gets built next.</p>
+          <p>Interested? Send your details and Greg will be in touch.</p>
+        </div>
+        <form class="lead-form" id="lead-form" action="submit.php" method="post" novalidate>
+          <div class="field">
+            <label for="lf-name">Name</label>
+            <input id="lf-name" name="name" type="text" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="lf-role">Role <span>(optional, e.g. commissioner or AD)</span></label>
+            <input id="lf-role" name="role" type="text" autocomplete="organization-title" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="lf-org">Conference or school</label>
+            <input id="lf-org" name="organization" type="text" autocomplete="organization" required maxlength="160">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="lf-email">Email</label>
+              <input id="lf-email" name="email" type="email" autocomplete="email" required maxlength="160">
+            </div>
+            <div class="field">
+              <label for="lf-phone">Phone <span>(optional)</span></label>
+              <input id="lf-phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+            </div>
+          </div>
+          <div class="field">
+            <label for="lf-message">Anything we should know? <span>(optional)</span></label>
+            <textarea id="lf-message" name="message" rows="3" maxlength="2000"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="lf-website">Leave this empty</label>
+            <input id="lf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="elapsed" id="lf-elapsed" value="">
+          <button class="btn btn-primary" type="submit">Become a founding member</button>
+          <p class="form-status" id="lf-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -427,6 +486,62 @@
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".clip video").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); });
   }
+</script>
+<script>
+  (function () {
+    var form = document.getElementById("lead-form");
+    if (!form) return;
+    var status = document.getElementById("lf-status");
+    var opened = Date.now();
+    var params = new URLSearchParams(location.search);
+    if (params.get("sent") === "1") {
+      form.innerHTML = '<p class="form-done">Thanks. Your details are on their way to Greg, and he will be in touch.</p>';
+      return;
+    }
+    if (params.get("error") === "1") {
+      status.textContent = "Something went wrong. Please check your details or email greg@ospreyreplay.com.";
+      status.className = "form-status error";
+    }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var required = ["lf-name", "lf-org", "lf-email"];
+      var firstBad = null;
+      required.forEach(function (id) {
+        var el = document.getElementById(id);
+        var ok = el.value.trim() !== "" && (el.type !== "email" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+        el.setAttribute("aria-invalid", ok ? "false" : "true");
+        if (!ok && !firstBad) firstBad = el;
+      });
+      if (firstBad) {
+        status.textContent = "Please add your name, conference or school, and a valid email.";
+        status.className = "form-status error";
+        firstBad.focus();
+        return;
+      }
+      document.getElementById("lf-elapsed").value = Math.round((Date.now() - opened) / 1000);
+      var button = form.querySelector("button");
+      button.disabled = true;
+      status.textContent = "Sending…";
+      status.className = "form-status";
+      fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.ok) {
+            form.innerHTML = '<p class="form-done"></p>';
+            form.querySelector(".form-done").textContent = data.message;
+          } else {
+            status.textContent = data.message;
+            status.className = "form-status error";
+            button.disabled = false;
+          }
+        })
+        .catch(function () {
+          status.textContent = "Something went wrong. Please email greg@ospreyreplay.com instead.";
+          status.className = "form-status error";
+          button.disabled = false;
+        });
+    });
+  })();
 </script>
 </body>
 </html>
