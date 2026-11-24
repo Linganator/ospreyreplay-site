@@ -74,13 +74,9 @@
     display: flex; align-items: center; justify-content: space-between;
     gap: 24px; min-height: 76px; flex-wrap: wrap; padding-block: 10px;
   }
-  .wordmark { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); }
-  .wordmark img { align-self: center; width: 71px; height: 44px; margin-right: 2px; }
-  .wordmark b { font-size: 1.9rem; font-weight: 900; }
-  .wordmark span {
-    font-size: 0.95rem; font-weight: 500; color: var(--ink-soft);
-    font-variation-settings: "wdth" 90; font-stretch: 90%;
-  }
+  .wordmark { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .wordmark img { width: 90px; height: 56px; }
+  .wordmark-name { display: grid; gap: 3px; font-size: 1.1rem; font-weight: 800; line-height: 1; }
   .nav { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
   .nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
   .nav a:hover { color: var(--signal); }
@@ -99,9 +95,12 @@
 
   /* Hero */
   .hero { padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 104px); }
-  .hero .wrap {
+  .hero-top { display: grid; gap: 24px; }
+  .hero-video { margin: clamp(32px, 4vw, 48px) 0 0; }
+  .hero-video figcaption { font-size: 0.95rem; color: var(--ink-soft); margin-top: 12px; }
+  .hero-body {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: clamp(32px, 5vw, 72px); align-items: center;
+    gap: clamp(32px, 5vw, 72px); align-items: center; margin-top: clamp(48px, 7vw, 88px);
   }
   .hero-copy { display: grid; gap: 24px; }
   .hero-sub { font-size: clamp(1.45rem, 2.4vw, 1.9rem); font-weight: 700; line-height: 1.2; color: var(--ink); margin-top: -8px; }
@@ -217,7 +216,7 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .hero .wrap, .split, .vision-grid { grid-template-columns: 1fr; }
+    .hero-body, .split, .vision-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps li { margin-right: 0; padding-right: 0; }
     .products li { grid-template-columns: 1fr; gap: 10px; }
@@ -228,9 +227,8 @@
     .nav a:not(.btn) { display: none; }
     .site-header .wrap { flex-wrap: nowrap; gap: 12px; }
     .wordmark { gap: 8px; }
-    .wordmark img { width: 56px; height: 35px; }
-    .wordmark b { font-size: 1.55rem; }
-    .wordmark span { display: none; }
+    .wordmark img { width: 68px; height: 42px; }
+    .wordmark-name { font-size: 0.95rem; gap: 2px; }
     .nav .btn { padding: 0 16px; }
   }
 </style>
@@ -241,7 +239,7 @@
   <div class="wrap">
     <a class="wordmark" href="#top" aria-label="Osprey Sports Intelligence, home">
       <img src="logo-mark.png" alt="" width="71" height="44">
-      <b>Osprey</b><span>Sports Intelligence</span>
+      <span class="wordmark-name"><span>Osprey</span><span>Sports</span><span>Intelligence</span></span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#how">How a review works</a>
@@ -256,14 +254,27 @@
 
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
-      <div class="hero-copy">
+      <div class="hero-top">
         <h1 id="hero-title">Replay. Accelerated.</h1>
         <p class="hero-sub"><span>Faster challenge reviews.</span> <span>More confident calls.</span></p>
+      </div>
+
+      <figure id="demo" class="hero-video">
+        <div class="video">
+          <video controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Osprey demo: two volleyball challenge reviews">
+            <source src="demo.mp4" type="video/mp4">
+            <a href="demo.mp4">Download the Osprey demo video</a>
+          </video>
+        </div>
+        <figcaption>Two real challenges from this fall, run through Osprey after the match. The referee still makes the call.</figcaption>
+      </figure>
+
+      <div class="hero-body">
+      <div class="hero-copy">
         <p class="lead">Osprey cuts the time a volleyball challenge takes and gives referees more data points to decide it. The referee taps the challenge type, Osprey opens the best angle at the right moment, and ball tracking shows where the ball landed or whether its path changed at the block.</p>
         <p class="referee-note">The referee always makes the call.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#demo">See the 2-minute demo</a>
-          <a class="btn btn-ghost" href="#contact">Talk about a 2027 pilot</a>
+          <a class="btn btn-primary" href="#contact">Talk about a 2027 pilot</a>
         </div>
       </div>
 
@@ -315,6 +326,7 @@
         </svg>
         <figcaption>Illustration of a landing review. In volleyball, a ball that touches the line is in.</figcaption>
       </figure>
+      </div>
     </div>
   </section>
 
@@ -412,21 +424,6 @@
         </li>
       </ul>
       <p class="conf-note">Planning replay for the 2027 season? <a href="#contact">Ask Greg about a pilot</a> for a conference tournament or a set of league matches.</p>
-    </div>
-  </section>
-
-  <section id="demo" class="band" aria-labelledby="demo-title">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="demo-title">See a review in 2 minutes</h2>
-        <p class="lead">Two real challenges from this fall, run through Osprey after the match. The referee still makes the call.</p>
-      </div>
-      <div class="video">
-        <video controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Osprey demo: two volleyball challenge reviews">
-          <source src="demo.mp4" type="video/mp4">
-          <a href="demo.mp4">Download the Osprey demo video</a>
-        </video>
-      </div>
     </div>
   </section>
 
